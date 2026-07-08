@@ -1,2 +1,0 @@
-import{z as o,D as i,A as r,K as a}from"./njJOMy7o.js";const l=o({cast(e){return typeof e=="string"?{text:e}:e},defaults:{"@type":"HowToDirection"}}),s=o({cast(e){return typeof e=="string"?{text:e}:e},defaults:{"@type":"HowToStep"},resolve(e,t){return e.url&&(e.url=i(t.meta.url,e.url)),e.image&&(e.image=r(e.image,t,a,{root:!0})),e.itemListElement&&(e.itemListElement=r(e.itemListElement,t,l)),e}}),m={__proto__:null,howToStepResolver:s};export{l as a,s as h,m as i};
-//# sourceMappingURL=qogSxUA-.js.map

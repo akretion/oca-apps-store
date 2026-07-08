@@ -1,0 +1,2 @@
+import{x as p,ab as n,o as l,q as u,f as i,ac as d,h as m,k as f,ai as e}from"./CN9QalTK.js";const g={base:"grid grid-cols-1 sm:grid-cols-2 gap-5 my-5 *:my-0"},b={__name:"ProseCardGroup",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const s=a,o=p(),r=n("prose.cardGroup",s),t=f(()=>e({extend:e(g),...o.ui?.prose?.cardGroup||{}}));return(c,C)=>(l(),u("div",{class:d(t.value({class:[m(r)?.base,s.class]}))},[i(c.$slots,"default")],2))}};export{b as default};
+//# sourceMappingURL=DLTo7hUN.js.map

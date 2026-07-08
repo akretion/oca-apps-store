@@ -1,0 +1,2 @@
+import{z as a,B as s,G as i,A as m,F as o}from"./CN9QalTK.js";import{P as l,p}from"./jIb52X7c.js";import"./Bk703wIe.js";import"./DKk8jCrV.js";import"./BMtLBtL4.js";import"./WDmN8sUx.js";const h=a({defaults:{"@type":"Comment"},idPrefix:"url",resolve(e,r){return e.author=m(e.author,r,p,{root:!0}),e.dateCreated=o(e.dateCreated),e.dateModified=o(e.dateModified),e},resolveRootNode(e,{find:r}){const t=r(l);t&&s(e,"about",i(t))}});export{h as commentResolver};
+//# sourceMappingURL=H0KNg9Kc.js.map

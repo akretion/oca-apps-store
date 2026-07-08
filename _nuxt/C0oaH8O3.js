@@ -1,2 +1,0 @@
-import{x as n,ab as c,o as p,q as u,f as i,ac as m,h as f,k as d,ai as s}from"./njJOMy7o.js";const _={base:"list-decimal ps-6 my-5 marker:text-muted"},x={__name:"ProseOl",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,o=n(),t=c("prose.ol",e),l=d(()=>s({extend:s(_),...o.ui?.prose?.ol||{}}));return(r,b)=>(p(),u("ol",{class:m(l.value({class:[f(t)?.base,e.class]}))},[i(r.$slots,"default")],2))}};export{x as default};
-//# sourceMappingURL=C0oaH8O3.js.map
