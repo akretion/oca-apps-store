@@ -1,2 +1,0 @@
-import{y as c,o as t,q as n,h as d,f as r,k as f}from"./CN9QalTK.js";const h=["id"],p=["href"],k={__name:"ProseH6",props:{id:{type:String,required:!1}},setup(a){const e=a,{headings:o}=c().public.mdc,i=f(()=>e.id&&(typeof o?.anchorLinks=="boolean"&&o?.anchorLinks===!0||typeof o?.anchorLinks=="object"&&o?.anchorLinks?.h6));return(s,u)=>(t(),n("h6",{id:e.id},[e.id&&d(i)?(t(),n("a",{key:0,href:`#${e.id}`},[r(s.$slots,"default")],8,p)):r(s.$slots,"default",{key:1})],8,h))}};export{k as default};
-//# sourceMappingURL=DUa4TzV0.js.map

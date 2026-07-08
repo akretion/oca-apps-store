@@ -1,2 +1,0 @@
-import{z as r,L as s,A as i,F as t}from"./CN9QalTK.js";import{p as o}from"./jIb52X7c.js";import"./Bk703wIe.js";import"./DKk8jCrV.js";import"./BMtLBtL4.js";import"./WDmN8sUx.js";const l="#dataset",c=r({defaults:{"@type":"Dataset"},inheritMeta:["description","url","dateModified","datePublished",{meta:"title",key:"name"}],idPrefix:["url",l],resolve(e,a){return s(e,"Dataset"),e.creator=i(e.creator,a,o,{root:!0}),e.dateModified=t(e.dateModified),e.datePublished=t(e.datePublished),e}});export{l as PrimaryDatasetId,c as datasetResolver};
-//# sourceMappingURL=CEcrsLaY.js.map

@@ -1,0 +1,2 @@
+import{x as n,ab as u,o as c,e as l,ac as p,h as i,k as m,ai as a}from"./DMPhdznm.js";import{_ as f}from"./lzqIBzYA.js";const d={base:"align-text-top"},x={__name:"ProseKbd",props:{value:{type:String,required:!0},class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(e){const s=e,t=n(),o=u("prose.kbd",s),r=m(()=>a({extend:a(d),...t.ui?.prose?.kbd||{}}));return(b,_)=>(c(),l(f,{value:e.value,class:p(r.value({class:[i(o)?.base,s.class]}))},null,8,["value","class"]))}};export{x as default};
+//# sourceMappingURL=ZhoG7zCY.js.map

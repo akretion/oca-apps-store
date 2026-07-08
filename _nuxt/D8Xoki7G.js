@@ -1,2 +1,0 @@
-import{b as n,V as l,W as m,Y as c,n as d,$ as i,a6 as p}from"./CN9QalTK.js";import{u as _}from"./DVqBT9mX.js";const y=n({__name:"[...handle]",async setup(f){let e,s;const{t:r}=l(),a=m(),u=_("modules"),{data:t,error:o}=([e,s]=c(()=>p(`module-${a.params.handle}`,()=>u.findRedirectByURLKey(a.path),{watch:[()=>a.path]})),e=await e,s(),e);if(t.value?.[0]?.urlKey)d(`/modules/${t.value[0].urlKey}`,{});else throw i({statusCode:o?.value?500:404,statusMessage:o?.value?.message||r("modules.notFound"),fatal:!0});return()=>{}}});export{y as default};
-//# sourceMappingURL=D8Xoki7G.js.map

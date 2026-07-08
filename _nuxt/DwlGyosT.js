@@ -1,0 +1,2 @@
+import{x as c,ab as n,o as u,q as p,f as i,ac as m,h as d,k as f,ai as s}from"./DMPhdznm.js";const b={base:"list-disc ps-6 my-5 marker:text-(--ui-border-accented)"},x={__name:"ProseUl",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,t=c(),o=n("prose.ul",e),r=f(()=>s({extend:s(b),...t.ui?.prose?.ul||{}}));return(l,_)=>(u(),p("ul",{class:m(r.value({class:[d(o)?.base,e.class]}))},[i(l.$slots,"default")],2))}};export{x as default};
+//# sourceMappingURL=DwlGyosT.js.map

@@ -1,2 +1,0 @@
-import{x as c,ab as p,o as l,q as u,f as i,ac as d,h as f,k as m,ai as e}from"./CN9QalTK.js";const b={base:""},C={__name:"ProseTbody",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const s=a,o=c(),t=p("prose.tbody",s),r=m(()=>e({extend:e(b),...o.ui?.prose?.tbody||{}}));return(n,y)=>(l(),u("tbody",{class:d(r.value({class:[f(t)?.base,s.class]}))},[i(n.$slots,"default")],2))}};export{C as default};
-//# sourceMappingURL=DL4H3OdK.js.map

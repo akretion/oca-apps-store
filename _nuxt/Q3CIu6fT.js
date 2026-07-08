@@ -1,2 +1,0 @@
-import{x as r,ab as p,o as c,q as u,f as i,ac as m,h as f,k as d,ai as e}from"./CN9QalTK.js";const _={base:"my-1.5 ps-1.5 leading-7 [&>ul]:my-0"},C={__name:"ProseLi",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const s=a,o=r(),t=p("prose.li",s),l=d(()=>e({extend:e(_),...o.ui?.prose?.li||{}}));return(n,b)=>(c(),u("li",{class:m(l.value({class:[f(t)?.base,s.class]}))},[i(n.$slots,"default")],2))}};export{C as default};
-//# sourceMappingURL=Q3CIu6fT.js.map
