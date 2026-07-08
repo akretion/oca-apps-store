@@ -1,0 +1,2 @@
+import{x as c,ab as p,o as l,q as u,f as d,ac as i,h as f,k as m,ai as s}from"./DnqSCraK.js";const h={base:"bg-muted"},C={__name:"ProseThead",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,t=c(),o=p("prose.thead",e),r=m(()=>s({extend:s(h),...t.ui?.prose?.thead||{}}));return(n,b)=>(l(),u("thead",{class:i(r.value({class:[f(o)?.base,e.class]}))},[d(n.$slots,"default")],2))}};export{C as default};
+//# sourceMappingURL=eo436Y7f.js.map

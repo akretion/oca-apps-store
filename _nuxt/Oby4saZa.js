@@ -1,0 +1,2 @@
+import{r as n}from"./E1PK4R6t.js";import a from"./DGnbFFq2.js";import{x as e,o as s,e as t,w as i,h as p}from"./DnqSCraK.js";import"./iik6CYzq.js";const d={__name:"ProseWarning",setup(c){const o=e();return(r,f)=>(s(),t(a,{color:"warning",icon:p(o).ui.icons.warning},{default:i(()=>[n(r.$slots,"default",{mdcUnwrap:"p"})]),_:3},8,["icon"]))}};export{d as default};
+//# sourceMappingURL=Oby4saZa.js.map
