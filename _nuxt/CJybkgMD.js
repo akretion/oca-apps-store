@@ -1,2 +1,0 @@
-import{z as t,I as i,B as s,G as p,A as a}from"./DnqSCraK.js";import{o as m}from"./DSHUJ8Yk.js";import"./BvBU7wLs.js";import"./3uiBOkEu.js";import"./BL83Y_mh.js";import"./ClKYCVMZ.js";const R=t({defaults:{"@type":"Course"},resolve(e,r){return e.provider=a(e.provider,r,m,{root:!0}),e},resolveRootNode(e,{find:r}){const o=r(i);return o&&s(e,"provider",p(o)),e}});export{R as courseResolver};
-//# sourceMappingURL=CJybkgMD.js.map

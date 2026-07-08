@@ -1,0 +1,2 @@
+import{b as a,o as c,q as m,U as r,at as i,h as p,v as l,k as _}from"./njJOMy7o.js";const d={key:0},u=a({__name:"SponsorLogo",props:{sponsorLevel:{},size:{}},setup(e){const s=e,o={sm:"80px",md:"96px",lg:"126px"},n=_(()=>o[s.size||"md"]||o.md);return(g,x)=>{const t=i;return e.sponsorLevel?(c(),m("div",d,[r(t,{src:e.sponsorLevel.image,alt:e.sponsorLevel.title,sizes:p(n)},null,8,["src","alt","sizes"])])):l("",!0)}}}),L=Object.assign(u,{__name:"SponsorLogo"});export{L as _};
+//# sourceMappingURL=CqXRAEBe.js.map

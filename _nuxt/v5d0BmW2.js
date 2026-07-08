@@ -1,2 +1,0 @@
-import{b as l,c as o,o as u,e as p,w as d,f,m as n,h as i,P as _}from"./DnqSCraK.js";var m=l({__name:"Label",props:{for:{type:String,required:!1},asChild:{type:Boolean,required:!1},as:{type:null,required:!1,default:"label"}},setup(r){const t=r;return o(),(s,a)=>(u(),p(i(_),n(t,{onMousedown:a[0]||(a[0]=e=>{!e.defaultPrevented&&e.detail>1&&e.preventDefault()})}),{default:d(()=>[f(s.$slots,"default")]),_:3},16))}}),v=m;export{v as L};
-//# sourceMappingURL=v5d0BmW2.js.map

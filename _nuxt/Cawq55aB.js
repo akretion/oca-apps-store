@@ -1,2 +1,0 @@
-import{z as s,A as r,F as e}from"./DnqSCraK.js";import{aggregateRatingResolver as i}from"./BFB-WsqF.js";import{p as o}from"./DSHUJ8Yk.js";import"./BvBU7wLs.js";import"./3uiBOkEu.js";import"./BL83Y_mh.js";import"./ClKYCVMZ.js";const v=s({defaults:{"@type":"PodcastSeries"},resolve(t,a){return t.author=r(t.author,a,o),t.aggregateRating=r(t.aggregateRating,a,i),t.datePublished&&(t.datePublished=e(t.datePublished)),t.startDate&&(t.startDate=e(t.startDate)),t.endDate&&(t.endDate=e(t.endDate)),t}});export{v as podcastSeriesResolver};
-//# sourceMappingURL=Cawq55aB.js.map

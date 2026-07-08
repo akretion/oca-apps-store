@@ -1,0 +1,2 @@
+import{x as l,ab as n,o as u,q as p,f as i,ac as d,h as f,k as b,ai as s}from"./njJOMy7o.js";const m={base:"border-s-4 border-accented ps-4 italic"},_={__name:"ProseBlockquote",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(o){const e=o,a=l(),t=n("prose.blockquote",e),c=b(()=>s({extend:s(m),...a.ui?.prose?.blockquote||{}}));return(r,k)=>(u(),p("blockquote",{class:d(c.value({class:[f(t)?.base,e.class]}))},[i(r.$slots,"default")],2))}};export{_ as default};
+//# sourceMappingURL=eVBc32nI.js.map

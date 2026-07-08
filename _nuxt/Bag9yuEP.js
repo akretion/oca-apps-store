@@ -1,2 +1,0 @@
-import{z as i,O as t,D as s,A as o}from"./DnqSCraK.js";import{p as a}from"./DSHUJ8Yk.js";import"./BvBU7wLs.js";import"./3uiBOkEu.js";import"./BL83Y_mh.js";import"./ClKYCVMZ.js";const v=i({defaults:{"@type":"MusicGroup"},idPrefix:"host",inheritMeta:[{meta:"host",key:"url"}],resolve(e,r){return e.foundingDate&&(e.foundingDate=t(e.foundingDate)),e.dissolutionDate&&(e.dissolutionDate=t(e.dissolutionDate)),e.url&&(e.url=s(r.meta.host,e.url)),e.member=o(e.member,r,a),e}});export{v as musicGroupResolver};
-//# sourceMappingURL=Bag9yuEP.js.map

@@ -1,0 +1,2 @@
+import{x as n,ab as c,o as p,q as l,ac as u,h as i,k as m,ai as s}from"./njJOMy7o.js";const f={base:"border-t border-default my-12"},_={__name:"ProseHr",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,r=n(),o=c("prose.hr",e),t=m(()=>s({extend:s(f),...r.ui?.prose?.hr||{}}));return(d,b)=>(p(),l("hr",{class:u(t.value({class:[i(o)?.base,e.class]}))},null,2))}};export{_ as default};
+//# sourceMappingURL=B1yK3RyB.js.map

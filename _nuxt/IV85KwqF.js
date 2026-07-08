@@ -1,2 +1,0 @@
-import{p as t}from"./DSHUJ8Yk.js";import{r as a}from"./DmdhLY1t.js";import{z as i,A as o}from"./DnqSCraK.js";import"./BvBU7wLs.js";import"./3uiBOkEu.js";import"./BL83Y_mh.js";import"./ClKYCVMZ.js";const v=i({defaults:{"@type":"Review"},inheritMeta:["inLanguage"],resolve(r,e){return r.reviewRating=o(r.reviewRating,e,a),r.author=o(r.author,e,t),r}});export{v as reviewResolver};
-//# sourceMappingURL=IV85KwqF.js.map

@@ -1,2 +1,0 @@
-import{x as t,ab as r,o as i,e as u,ac as l,h as p,a7 as m,k as f,ai as a}from"./DnqSCraK.js";const d={base:"size-4 shrink-0 align-sub"},h={__name:"ProseIcon",props:{name:{type:String,required:!0},class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(e){const s=e,n=t(),o=r("prose.icon",s),c=f(()=>a({extend:a(d),...n.ui?.prose?.icon||{}}));return(_,b)=>(i(),u(m,{name:e.name,class:l(c.value({class:[p(o)?.base,s.class]}))},null,8,["name","class"]))}};export{h as default};
-//# sourceMappingURL=Bl_ezYXr.js.map

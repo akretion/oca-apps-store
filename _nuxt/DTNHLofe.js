@@ -1,2 +1,0 @@
-import{x as n,ab as c,o as l,q as u,f as i,ac as f,h as m,k as d,ai as s}from"./DnqSCraK.js";const _={base:"my-5 leading-7 text-pretty"},y={__name:"ProseP",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,t=n(),o=c("prose.p",e),p=d(()=>s({extend:s(_),...t.ui?.prose?.p||{}}));return(r,b)=>(l(),u("p",{class:f(p.value({class:[m(o)?.base,e.class]}))},[i(r.$slots,"default")],2))}};export{y as default};
-//# sourceMappingURL=DTNHLofe.js.map
