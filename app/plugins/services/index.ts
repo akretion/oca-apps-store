@@ -7,7 +7,6 @@ import {
   CompanyService
 } from '~~/services'
 
-import { ofetch } from 'ofetch'
 import type {
   ServiceList as ServiceList,
   SearchConfig
@@ -51,7 +50,6 @@ if (import.meta.server) {
  */
 export default defineNuxtPlugin({
   name: 'services-plugin',
-  enforce: 'pre',
   async setup(nuxtApp) {
     const config = useRuntimeConfig()?.public?.search as SearchConfig
     if (
