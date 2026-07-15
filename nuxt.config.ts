@@ -25,17 +25,7 @@ export default defineNuxtConfig({
     format: ['webp'],
     domains: ['odoo-community.org'],
   },
-  nitro: {
-    compressPublicAssets: true,
-    storage: {
-      routeCache: {
-        driver: 'memory',
-      },
-    },
-    externals: {
-      inline: ['puppeteer-core'],
-    },
-  },
+
   plugins: ['~/plugins/services/index', '~/plugins/sponsorship'],
   ssr: true,
   devtools: { enabled: true },

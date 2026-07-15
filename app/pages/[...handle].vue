@@ -1,7 +1,17 @@
+<template>
+  <div />
+</template>
 <script lang="ts" setup>
 import type { Module } from '~~/models'
 const { t } = useI18n()
 const route = useRoute()
+definePageMeta({
+  layout: 'empty',
+  validate: (route) =>
+    !/^.*\.(jpg|jpeg|png|gif|ico|json|rss|xml|svg|js|css|mjs|woff|woff2|pdf)$/.test(
+      route.fullPath
+    ),
+})
 const moduleService = useService('modules')
 
 /**

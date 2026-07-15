@@ -1,4 +1,3 @@
-import { useRuntimeConfig } from '#app'
 import { Client } from 'typesense'
 import {
   CategoryService,
@@ -36,14 +35,6 @@ declare module 'vue' {
 }
 let sharedHttpAgent: any
 let sharedHttpsAgent: any
-
-if (import.meta.server) {
-  const { Agent: HttpAgent } = await import('node:http')
-  const { Agent: HttpsAgent } = await import('node:https')
-  sharedHttpAgent ??= new HttpAgent({ keepAlive: true, maxSockets: 50 })
-  sharedHttpsAgent ??= new HttpsAgent({ keepAlive: true, maxSockets: 50 })
-}
-
 /*
  * This plugin is used to initialize all the services used in the app.
  * It also provides the fetchers to fetch data from the ERP and Search Engine.
@@ -51,6 +42,12 @@ if (import.meta.server) {
 export default defineNuxtPlugin({
   name: 'services-plugin',
   async setup(nuxtApp) {
+    if (import.meta.server) {
+      const { Agent: HttpAgent } = await import('node:http')
+      const { Agent: HttpsAgent } = await import('node:https')
+      sharedHttpAgent ??= new HttpAgent({ keepAlive: true, maxSockets: 50 })
+      sharedHttpsAgent ??= new HttpsAgent({ keepAlive: true, maxSockets: 50 })
+    }
     const config = useRuntimeConfig()?.public?.search as SearchConfig
     if (
       !config
@@ -73,7 +70,6 @@ export default defineNuxtPlugin({
     /* TypeSense client initialization */
     const url = new URL(searchBaseUrl)
     const path = url.pathname === '/' ? '' : url.pathname
-
     const client = new Client({
       nodes: [
         {
