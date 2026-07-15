@@ -1,2 +1,0 @@
-import{x as c,ab as p,o as l,q as u,f as i,ac as f,h as m,k as d,ai as e}from"./DMPhdznm.js";const g={base:""},C={__name:"ProseStrong",props:{class:{type:null,required:!1},ui:{type:Object,required:!1}},setup(a){const s=a,o=c(),t=p("prose.strong",s),r=d(()=>e({extend:e(g),...o.ui?.prose?.strong||{}}));return(n,_)=>(l(),u("strong",{class:f(r.value({class:[m(t)?.base,s.class]}))},[i(n.$slots,"default")],2))}};export{C as default};
-//# sourceMappingURL=BLaDBX0r.js.map

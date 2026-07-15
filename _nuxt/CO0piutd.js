@@ -1,2 +1,0 @@
-import{x as c,ab as p,o as l,q as u,f as i,ac as m,h as f,k as d,ai as s}from"./DMPhdznm.js";const _={base:""},g={__name:"ProseEm",props:{class:{type:String,required:!1},ui:{type:Object,required:!1}},setup(a){const e=a,o=c(),t=p("prose.em",e),r=d(()=>s({extend:s(_),...o.ui?.prose?.em||{}}));return(n,b)=>(l(),u("em",{class:m(r.value({class:[f(t)?.base,e.class]}))},[i(n.$slots,"default")],2))}};export{g as default};
-//# sourceMappingURL=CO0piutd.js.map
