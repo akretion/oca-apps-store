@@ -1,6 +1,5 @@
 import { BaseServiceLocalized } from '~~/services'
-import type { $Fetch } from 'ofetch'
-import { Client } from 'typesense'
+import type { Client } from 'typesense'
 import type {
   DocumentSchema,
   SearchResponse,
@@ -11,9 +10,6 @@ import type {
 import type { LocalizedIndex } from '~/plugins/services/types/config'
 
 export class BaseServiceTypeSense extends BaseServiceLocalized {
-  ofetch: $Fetch
-  host: string
-  key: string
   collectionByLocales: {
     [key: string]: string
   }
@@ -23,34 +19,16 @@ export class BaseServiceTypeSense extends BaseServiceLocalized {
   client: Client
   constructor(
     isoLocale: string,
-    ofetch: $Fetch,
-    host: string,
-    key: string,
+    client: Client,
     collectionByLocales: LocalizedIndex,
   ) {
     super(isoLocale)
-    this.ofetch = ofetch
-    this.host = host
-    this.key = key
+    this.client = client
     this.collectionByLocales = collectionByLocales
     if (!this.collectionByLocales) {
       throw new Error('Typesense collection is required')
     }
     this.collection = this.setLocalizedCollectionName()
-    const url = new URL(this.host)
-    let path = url.pathname === '/' ? '' : url.pathname
-    this.client = new Client({
-      nodes: [
-        {
-          host: url.hostname,
-          path,
-          port: url.port ? parseInt(url.port) : 443,
-          protocol: url.protocol.replace(':', ''),
-        },
-      ],
-      apiKey: this.key,
-      connectionTimeoutSeconds: 2,
-    })
   }
 
   setLocalizedCollectionName() {
@@ -132,80 +110,5 @@ export class BaseServiceTypeSense extends BaseServiceLocalized {
     }
     const res = searchFailures(0, response)
     return res || null
-  }
-}
-
-export class BaseServiceTypeSenseUnion extends BaseServiceTypeSense {
-  collectionsByLocales: {
-    [key: string]: {
-      [key: string]: string
-    }
-  }
-  collections: { [key: string]: string }
-  constructor(
-    isoLocale: string,
-    ofetch: $Fetch,
-    host: string,
-    key: string,
-    collectionsByLocales: {
-      [key: string]: {
-        [key: string]: string
-      }
-    },
-  ) {
-    const firstCollection = Object.values(collectionsByLocales)[0]?.['fr'] || ''
-    super(isoLocale, ofetch, host, key, firstCollection || {})
-
-    this.collectionsByLocales = collectionsByLocales
-    if (!this.collectionsByLocales) {
-      throw new Error('Typesense collections is required')
-    }
-    this.collections = this.setLocalizedCollectionNames()
-  }
-
-  setLocalizedCollectionNames() {
-    return Object.fromEntries(
-      Object.entries(this.collectionsByLocales).map(([key, collectionByLocales]) => [
-        key,
-        collectionByLocales?.['fr'] || '',
-      ]),
-    )
-  }
-
-  /**
-   * Perform a multiple queries search on multiple collection in Typesense
-   * @param queries
-   * @returns
-   */
-  async performMultiCollectionSearch<T extends DocumentSchema>(
-    queries: SearchParams<T>[] = [],
-  ): Promise<{ [key: string]: SearchResponse<T> }> {
-    try {
-      const searches = Object.entries(this.collections).map(
-        ([key, collection]) => ({
-          collection: collection,
-          ...queries,
-        }),
-      )
-
-      const res: SearchResponse<T>[] = await this.client.multiSearch
-        .perform({
-          searches,
-        })
-        .then(r => r.results)
-
-      const results: { [key: string]: SearchResponse<T> } = {}
-      for (const key in this.collections) {
-        const collectionName = this.collections[key]
-        results[key] = res.find(
-          r => r.request_params.collection_name === collectionName,
-        )!
-      }
-      return results
-    }
-    catch (error: any) {
-      this.findFailureInTypesenseResponse(error?.data)
-      throw error
-    }
   }
 }

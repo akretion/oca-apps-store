@@ -1,5 +1,5 @@
 import { useRuntimeConfig } from '#app'
-
+import { Client } from 'typesense'
 import {
   CategoryService,
   ModuleService,
@@ -66,35 +66,55 @@ export default defineNuxtPlugin(async (nuxtApp) => {
   const searchIndexes = config.indices
   const searchKey = config.key
 
+  /* TypeSense client initialization */
+  const url = new URL(searchBaseUrl)
+  const path = url.pathname === '/' ? '' : url.pathname
+  let sharedHttpAgent: any
+  let sharedHttpsAgent: any
+
+  if (import.meta.server) {
+    const { Agent: HttpAgent } = await import('node:http')
+    const { Agent: HttpsAgent } = await import('node:https')
+    sharedHttpAgent ??= new HttpAgent({ keepAlive: true, maxSockets: 50 })
+    sharedHttpsAgent ??= new HttpsAgent({ keepAlive: true, maxSockets: 50 })
+  }
+  const client = new Client({
+    nodes: [
+      {
+        host: url.hostname,
+        path,
+        port: url.port ? parseInt(url.port) : 443,
+        protocol: url.protocol.replace(':', ''),
+      },
+    ],
+    apiKey: searchKey,
+    connectionTimeoutSeconds: 2,
+    ...(import.meta.server && {
+      httpAgent: sharedHttpAgent,
+      httpsAgent: sharedHttpsAgent,
+    }),
+  })
 
   // Create all other services
   const services: ShopinvaderServiceList = {
     categories: new CategoryService(
       isoLocale,
-      searchFetch,
-      searchBaseUrl,
-      searchKey,
+      client,
       searchIndexes.categories,
     ),
     persons: new PersonService(
       isoLocale,
-      searchFetch,
-      searchBaseUrl,
-      searchKey,
+      client,
       searchIndexes.persons,
     ),
     companies: new CompanyService(
       isoLocale,
-      searchFetch,
-      searchBaseUrl,
-      searchKey,
+      client,
       searchIndexes.companies,
     ),
     modules: new ModuleService(
       isoLocale,
-      searchFetch,
-      searchBaseUrl,
-      searchKey,
+      client,
       searchIndexes.modules,
     )
   }
