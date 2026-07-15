@@ -27,14 +27,6 @@ export default defineNuxtConfig({
   },
   nitro: {
     compressPublicAssets: true,
-    storage: {
-      routeCache: {
-        driver: 'memory',
-      },
-    },
-    externals: {
-      inline: ['puppeteer-core'],
-    },
   },
   plugins: ['~/plugins/services/index', '~/plugins/sponsorship'],
   ssr: false,
@@ -48,8 +40,8 @@ export default defineNuxtConfig({
     },
     head: {
       meta: [
-          { name: 'theme-color', content: '#151B47' },
-          { name: 'robots', content: 'noindex, nofollow' },
+        { name: 'theme-color', content: '#151B47' },
+        { name: 'robots', content: 'noindex, nofollow' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
     },
@@ -107,7 +99,6 @@ export default defineNuxtConfig({
     '/': {
       ssr: true,
     },
-
     'modules/**': {
       ssr: true,
     },
