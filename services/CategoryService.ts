@@ -8,6 +8,7 @@ import type {
 } from '~~/models'
 import { BaseServiceTypeSense } from '~~/services'
 import type { SearchResponseHit } from 'typesense/lib/Typesense/Documents'
+import type { SitemapUrlInput } from '@nuxtjs/sitemap'
 
 interface CategorySchema {
   id: number
@@ -105,6 +106,40 @@ export class CategoryService extends BaseServiceTypeSense {
       filter_by: `parent.id:=${parentId}`,
     })
     return result?.hits || []
+  }
+
+  /**
+   * Return the list of all persons url for sitemap generation
+   * We use a loop with pagination to avoid issues with large number of entries
+   */
+  async sitemapsEntries(): Promise<SitemapUrlInput[]> {
+    const size = 249
+    const urls: SitemapUrlInput[] = []
+    let page = 1
+    let total = 0
+    do {
+      const res = await this.performSearch({
+        q: '*',
+        group_by: 'url_key',
+        per_page: size,
+        page,
+        group_limit: 1,
+        include_fields: 'url_key',
+        enable_highlight_v1: false,
+      })
+      total = res?.found || 0
+      const hits = res?.grouped_hits
+      for (const hit of hits || []) {
+        if (hit?.group_key?.[0]) {
+          urls.push({
+            loc: hit.group_key[0],
+          })
+        }
+      }
+
+      page++
+    } while ((page - 1) * size < total)
+    return urls || []
   }
 
   jsonToModel(json: CategorySchema): Category {

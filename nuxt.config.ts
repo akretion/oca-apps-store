@@ -20,7 +20,6 @@ export default defineNuxtConfig({
     '@nuxt/scripts',
     'nuxt-seo-utils',
   ],
-
   image: {
     format: ['webp'],
     domains: ['odoo-community.org'],
@@ -51,6 +50,20 @@ export default defineNuxtConfig({
   sitemap: {
     sources: ['/api/__sitemap__/urls'],
     autoI18n: false,
+    sitemaps: {
+      modules: {
+        sources: ['/api/__sitemap__/modules'],
+      },
+      companies: {
+        sources: ['/api/__sitemap__/companies'],
+      },
+      persons: {
+        sources: ['/api/__sitemap__/persons'],
+      },
+      categories: {
+        sources: ['/api/__sitemap__/categories'],
+      },
+    }
   },
   ui: {
     colorMode: true,

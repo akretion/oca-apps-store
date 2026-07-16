@@ -1,4 +1,4 @@
-import { Client } from 'typesense'
+import { typesenseClient } from '#shared/utils/typesenseClient'
 import {
   CategoryService,
   ModuleService,
@@ -37,23 +37,18 @@ let sharedHttpAgent: any
 let sharedHttpsAgent: any
 /*
  * This plugin is used to initialize all the services used in the app.
- * It also provides the fetchers to fetch data from the ERP and Search Engine.
+ * It also provides the fetchers to fetch data from the typesense server.
  */
 export default defineNuxtPlugin({
   name: 'services-plugin',
   async setup(nuxtApp) {
-    if (import.meta.server) {
-      const { Agent: HttpAgent } = await import('node:http')
-      const { Agent: HttpsAgent } = await import('node:https')
-      sharedHttpAgent ??= new HttpAgent({ keepAlive: true, maxSockets: 50 })
-      sharedHttpsAgent ??= new HttpsAgent({ keepAlive: true, maxSockets: 50 })
-    }
+    // Get the search config from the runtime config (see nuxt.config.ts)
     const config = useRuntimeConfig()?.public?.search as SearchConfig
     if (
       !config
       || !config.url
     ) {
-      throw new Error('No shopinvader search config found')
+      throw new Error('No search config found')
     }
 
     // Shortcuts to data
@@ -63,31 +58,11 @@ export default defineNuxtPlugin({
       || i18nOptions?.localeProperties?.value?.iso // For nuxt-i18n < 7
       || 'en'
 
-    const searchBaseUrl = config.url
+    const client = await typesenseClient(config.url, config.key)
     const searchIndexes = config.indices
-    const searchKey = config.key
 
-    /* TypeSense client initialization */
-    const url = new URL(searchBaseUrl)
-    const path = url.pathname === '/' ? '' : url.pathname
-    const client = new Client({
-      nodes: [
-        {
-          host: url.hostname,
-          path,
-          port: url.port ? parseInt(url.port) : 443,
-          protocol: url.protocol.replace(':', ''),
-        },
-      ],
-      apiKey: searchKey,
-      connectionTimeoutSeconds: 2,
-      ...(import.meta.server && {
-        httpAgent: sharedHttpAgent,
-        httpsAgent: sharedHttpsAgent,
-      }),
-    })
+    // Create the services and provide them to the app
 
-    // Create all other services
     const services: ShopinvaderServiceList = {
       categories: new CategoryService(
         isoLocale,
