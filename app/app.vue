@@ -28,6 +28,8 @@
 
 <script setup lang="ts">
 import { useNetwork } from '@vueuse/core'
+import '~/assets/css/main.css'
+
 const { t } = useI18n()
 const network = reactive(useNetwork())
 const isOnline = computed(() => network.isOnline)

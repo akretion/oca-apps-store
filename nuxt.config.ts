@@ -19,7 +19,27 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@nuxt/scripts',
     'nuxt-seo-utils',
+    'nuxt-vitalizer'
   ],
+  vitalizer: {
+    // Remove the render-blocking entry CSS
+    disableStylesheets: "entry",
+    disablePrefetchLinks: true,
+    disablePreloadLinks: true,
+
+  },
+  features: {
+    inlineStyles: true
+  },
+  nitro: {
+    compressPublicAssets: true,
+    storage: {
+      cache: {
+        driver: 'fs',
+        base: './.data/cache',
+      },
+    },
+  },
   image: {
     format: ['webp'],
     domains: ['odoo-community.org'],
@@ -39,7 +59,6 @@ export default defineNuxtConfig({
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }],
     },
   },
-  css: ['~/assets/css/main.css'],
   site: {
     url: 'https://apps.odoo-community.org',
     name: 'OCA Apps Store',
@@ -105,27 +124,58 @@ export default defineNuxtConfig({
   routeRules: {
     '/': {
       ssr: true,
+      swr: 3600,
     },
-
-    'modules/**': {
+    '/community': {
       ssr: true,
+      swr: 3600,
     },
-    modules: {
+    '/community/**': {
+      prerender: false,
       ssr: true,
+      swr: 3600,
     },
-    module: {
+    '/modules/**': {
+      prerender: false,
+      ssr: true,
+      swr: 3600,
+    },
+    '/modules': {
+      ssr: true,
+      swr: 3600,
+    },
+    '/module': {
       redirect: '/modules',
     },
-    companies: {
+    '/categories': {
       ssr: true,
+      swr: 3600,
+    },
+    '/categories/**': {
+      ssr: true,
+      swr: 3600,
+    },
+    '/sponsors': {
+      ssr: true,
+      swr: 3600,
+    },
+    '/integrators': {
+
+      ssr: true,
+      swr: 3600,
+    },
+    '/integrators/**': {
+      prerender: false,
+      ssr: true,
+      swr: 3600,
     },
     '/**': {
       ssr: true,
     },
   },
   sourcemap: {
-    server: true,
-    client: true,
+    server: false,
+    client: false,
   },
   compatibilityDate: '2025-07-16',
   eslint: {

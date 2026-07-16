@@ -1,5 +1,5 @@
 export default defineEventHandler(async () => {
-  const storage = useStorage('db')
+  const storage = useStorage('cache')
   const keys = await storage.keys()
   await storage.clear()
   return {

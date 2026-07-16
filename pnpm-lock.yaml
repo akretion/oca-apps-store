@@ -80,6 +80,9 @@ importers:
       nuxt-site-config:
         specifier: ^3.2.19
         version: 3.2.21(vite@7.3.6)(vue@3.5.39)
+      nuxt-vitalizer:
+        specifier: ^2.0.0
+        version: 2.0.0
       pinia:
         specifier: ^3.0.4
         version: 3.0.4(typescript@5.9.3)(vue@3.5.39)
@@ -10417,7 +10420,7 @@ packages:
     dependencies:
       foreground-child: 3.3.1
       jackspeak: 4.2.3
-      minimatch: 10.2.0
+      minimatch: 10.2.5
       minipass: 7.1.2
       package-json-from-dist: 1.0.1
       path-scurry: 2.0.1
@@ -12912,6 +12915,14 @@ packages:
       - vite
       - vue
       - zod
+    dev: false
+
+  /nuxt-vitalizer@2.0.0:
+    resolution: {integrity: sha512-X2mabvcXMfKmWc46p8WmCbTlr8+wDniPHunQIRSGWmH0goqw6YTAe0+ttxRNISGxcobXDqqip7qPCE6+T60t1g==}
+    dependencies:
+      '@nuxt/kit': 4.4.8(magicast@0.5.2)
+    transitivePeerDependencies:
+      - magicast
     dev: false
 
   /nuxt@4.4.8(@types/node@24.10.13)(@vue/compiler-sfc@3.5.39)(better-sqlite3@12.6.2)(esbuild@0.27.3)(eslint@9.39.2)(pinia@3.0.4)(rollup@4.62.2)(typescript@5.9.3)(vite@7.3.6):
