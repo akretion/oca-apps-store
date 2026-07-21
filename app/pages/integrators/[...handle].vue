@@ -1,5 +1,5 @@
 <template>
-  <div v-if="company" class="max-md:w-full max-w-full">
+  <div v-if="company" class="max-w-full max-md:w-full">
     <UBreadcrumb :items="breadcrumb" class="mt-8 mb-6" />
     <USeparator />
     <SponsorDetail v-if="company && company?.sponsorship" :sponsor="company" />
@@ -30,6 +30,11 @@ if (company.value == null || error.value) {
     statusMessage: error?.value?.message || t('companies.notFound'),
     fatal: true,
   })
+}
+
+if (route.path !== `/${company.value?.urlKey}`) {
+  // redirect to the canonical URL if the path doesn't match the company URL
+  navigateTo(`/${company.value?.urlKey}`, { redirectCode: 301 })
 }
 
 const breadcrumb = computed(() => {

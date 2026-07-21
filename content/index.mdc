@@ -13,7 +13,7 @@ icon: 'module'
 title: Odoo Open Source modules by the OCA
 description: Discover Open Source Odoo modules created, updated, and maintained by the Odoo Community Association (OCA).
 ui: 
-  container: 'py-2 md:py-2 lg:py-0 xl:py-6 px-4 sm:py-12 sm:px-2 gap-2'
+  root: 'py-2 md:py-2 lg:py-0 xl:py-6 px-4 sm:py-12 lg:py-32 xl:py-48 sm:px-2 gap-2'
   title: 'flex items-center justify-center text-2xl sm:text-3xl md:text-3xl lg:text-3xl xl:text-5xl'
   description: 'flex flex-col items-center max-w-5xl mx-auto'
   leading: 'mb-6'

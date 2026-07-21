@@ -7,8 +7,7 @@
     </div>
     <div class="relative pt-14 pb-1 md:pt-22 md:pb-22">
       <div
-        class="absolute top-0 left-1/2 -z-10 h-[100%] w-screen -translate-x-1/2 -skew-y-3 transform dark:bg-primary-600 bg-secondary-50"
-      
+        class="absolute top-0 left-1/2 -z-10 h-[100%] w-screen -translate-x-1/2 -skew-y-3 transform bg-secondary-50 dark:bg-primary-600"
       />
       <div v-if="displayPersonGroups" class="d-block mx-w-sm mx-auto">
         <PersonGroups :person="person" />
@@ -53,22 +52,22 @@
   </div>
 </template>
 <script lang="ts" setup>
-const { t } = useI18n();
-import type { Person } from "~/models";
+const { t } = useI18n()
+import type { Person } from '~/models'
 
-const person = ref<Person | null>(null);
-const urlParams = useRoute().params;
-const route = useRoute();
+const person = ref<Person | null>(null)
+const urlParams = useRoute().params
+const route = useRoute()
 
-const personService = useService("persons");
+const personService = useService('persons')
 const breadCrumb = computed(() => {
   const items: any = [
     {
-      label: t("nav.community.title"),
-      to: "/community",
-      icon: "community",
+      label: t('nav.community.title'),
+      to: '/community',
+      icon: 'community',
     },
-  ];
+  ]
   items.push({ label: person?.value?.name || '', icon: 'person' })
   return items
 })
@@ -108,24 +107,33 @@ const { data } = await useAsyncData<Person>(
   {
     watch: [route],
   }
-);
+)
 
 if (data.value) {
-  person.value = data.value;
+  person.value = data.value
+  if (route.path !== `/${person.value?.urlKey}`) {
+    // redirect to the canonical URL if the path doesn't match the  URL
+    navigateTo(`/${person.value?.urlKey}`, {
+      redirectCode: 301,
+    })
+  }
 } else {
   throw createError({
     statusCode: 404,
-    statusMessage: t("person.notFound"),
+    statusMessage: t('person.notFound'),
     fatal: true,
-  });
+  })
 }
-person.value = data.value || null;
+person.value = data.value || null
 
 const displayPersonGroups = computed(() => {
-  if (person.value.pscList.length > 0 || person.value.workGroupList.length > 0) {
-    return true;
+  if (
+    person.value.pscList.length > 0 ||
+    person.value.workGroupList.length > 0
+  ) {
+    return true
   } else {
-    return false;
+    return false
   }
 })
 
@@ -178,7 +186,7 @@ const getInvolvedLinks = ref<ButtonProps[]>([
 </script>
 <style scoped>
 .background-style::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: -50%;
