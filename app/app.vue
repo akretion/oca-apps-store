@@ -4,35 +4,16 @@
     <NuxtLoadingIndicator color="#151B47" />
     <UMain data-vaul-drawer-wrapper>
       <NuxtLayout>
-        <UPageHero
-          v-if="!isOnline"
-          :title="t('offline.title')"
-          :description="t('offline.description')"
-          :links="[
-            {
-              label: t('offline.retry'),
-              onClick: reloadNuxtApp,
-            },
-          ]"
-          class="h-screen"
-        >
-          <template #headline>
-            <UIcon name="offline" class="size-20 text-primary" />
-          </template>
-        </UPageHero>
-        <NuxtPage v-else />
+        <NuxtPage />
       </NuxtLayout>
     </UMain>
   </UApp>
 </template>
 
 <script setup lang="ts">
-import { useNetwork } from '@vueuse/core'
 import '~/assets/css/main.css'
 
 const { t } = useI18n()
-const network = reactive(useNetwork())
-const isOnline = computed(() => network.isOnline)
 
 useHead({
   titleTemplate: (titleChunk) => {
