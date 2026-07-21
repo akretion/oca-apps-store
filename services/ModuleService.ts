@@ -46,15 +46,16 @@ export class ModuleService extends BaseServiceTypeSense {
     urlKey: string,
     serie?: string
   ): Promise<ModuleGroupedHit | null> {
+    let sortBy = 'serie:desc'
+    if (serie) {
+      sortBy = `_eval(serie:${serie}),${sortBy}`
+    }
     const body: any = {
       q: '*',
-      filter_by: `techname:${urlKey}`,
+      filter_by: `techname:=\`${urlKey}\``,
       group_by: 'techname',
       group_limit: 99,
-      sort_by: 'serie:desc',
-    }
-    if (serie) {
-      body.filter_by += ` && serie:=${serie}`
+      sort_by: sortBy,
     }
     const result = await super.performSearch(body)
 

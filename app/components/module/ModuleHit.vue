@@ -9,7 +9,10 @@
     }"
   >
     <template #header>
-      <div class="fit flex max-w-full items-center gap-4" @click="goToModule">
+      <div
+        class="fit flex max-w-full items-center gap-4"
+        @click="() => goToModule()"
+      >
         <ModuleImage :module="module" class="min-w-16" />
         <div
           class="flex flex-col items-start justify-start gap-1 overflow-hidden"
@@ -17,13 +20,15 @@
           <ProseH3
             class="my-0 line-clamp-2 font-heading text-lg leading-6 font-semibold text-primary lg:text-lg"
           >
-            <div v-if="highlights?.name" v-html="highlights.name" />
-            <template v-else>
-              {{ removeLastWord(module.name) }}
-              <span class="text-secondary-500">
-                {{ getLastWord(module.name) }}
-              </span>
-            </template>
+            <NuxtLink :to="`/modules/${module.urlKey}`" @click.stop>
+              <span v-if="highlights?.name" v-html="highlights.name" />
+              <template v-else>
+                {{ removeLastWord(module.name) }}
+                <span class="text-secondary-500">
+                  {{ getLastWord(module.name) }}
+                </span>
+              </template>
+            </NuxtLink>
           </ProseH3>
           <div
             v-html="highlights?.techname || module?.techname"
@@ -74,8 +79,8 @@
         </div>
       </div>
     </template>
-    <div class="flex flex-1 flex-col gap-y-1 pt-2" @click="goToModule">
-      <div class="h-full flex-1">
+    <div class="flex flex-1 flex-col gap-y-1 pt-2">
+      <div class="h-full flex-1" @click="() => goToModule()">
         <p
           v-if="module?.summary"
           class="line-clamp-3 text-sm text-gray-500 dark:text-gray-400"
@@ -86,6 +91,7 @@
         v-if="highlights?.complement"
         v-html="`... ${highlights.complement}...`"
         class="border-l-2 border-l-muted py-1 pl-2 text-xs text-dimmed"
+        @click="() => goToModule()"
       />
 
       <ModuleSerieList
@@ -93,9 +99,10 @@
         size="sm"
         class="pt-3"
         :limit="5"
+        @select="(serie) => goToModule(serie)"
       />
     </div>
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between" @click="() => goToModule()">
       <div class="flex items-center">
         <UAvatarGroup v-if="module?.maintainers?.length" :max="8" size="sm">
           <UTooltip
@@ -197,9 +204,13 @@ const ui = computed(() => {
   }
 })
 
-const goToModule = () => {
+const goToModule = (serie?: string) => {
   if (!module.value?.urlKey) return
-  navigateTo(`/modules/${module.value?.urlKey}`)
+  let url = `/modules/${module.value.urlKey}`
+  if (serie) {
+    url += `?serie=${serie}`
+  }
+  navigateTo(url)
 }
 const highlights = computed<Highlight>(() => {
   if (!module?.value) return null

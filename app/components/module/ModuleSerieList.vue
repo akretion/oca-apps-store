@@ -10,24 +10,34 @@
       :class="{
         'cursor-pointer': selectedModule,
       }"
-      @click="$emit('select', hit.serie)"
-    >
-      {{ hit.serie }}
-    </UBadge>
+      :label="hit.serie"
+      @click="
+        () => {
+          if (hit.value) {
+            $emit('select', hit.value)
+          }
+        }
+      "
+    />
   </div>
 </template>
 <script lang="ts" setup>
 import type { ModuleGroupedHit, Module } from '~~/models'
-
+interface Serie {
+  serie: string
+  value?: string | null
+}
 const props = withDefaults(
   defineProps<{
     moduleGrouped: ModuleGroupedHit
     selectedModule?: Module
-    size: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg'
     limit?: number
   }>(),
   {
     size: 'md',
+    selectedModule: undefined,
+    limit: 30,
   }
 )
 const emits = defineEmits<{
@@ -40,18 +50,18 @@ const emits = defineEmits<{
  * If there are more than 5 series, only return the top 5 and
  * indicate how many additional series there are with a "+X" format.
  */
-const series = computed(() => {
+const series = computed<Serie[]>(() => {
   const series = props.moduleGrouped?.hits
-    ?.reduce((acc: { serie: string }[], hit) => {
+    ?.reduce((acc: Serie[], hit) => {
       if (hit.serie && !acc.find((v) => v.serie === hit.serie)) {
-        acc.push({ serie: hit.serie })
+        acc.push({ serie: hit.serie, value: hit.serie })
       }
       return acc
-    }, [])
+    }, [] as Serie[])
     .sort((a, b) => parseFloat(b.serie) - parseFloat(a.serie))
   if (props.limit && series?.length > props.limit) {
     const remaining = series.length - props.limit
-    return series.slice(0, props.limit).concat({ serie: `+${remaining}` })
+    return series.slice(0, props.limit).concat([{ serie: `+${remaining}` }])
   }
   return series
 })

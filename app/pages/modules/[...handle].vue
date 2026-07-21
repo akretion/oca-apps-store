@@ -21,7 +21,7 @@
                 </span>
               </ProseH1>
             </div>
-             <NuxtLink
+            <NuxtLink
               v-if="module?.repository?.category?.name"
               @click.stop
               :to="`/${module.repository.category.urlKey}`"
@@ -35,17 +35,17 @@
                 :label="module.repository.category.name"
                 :to="`/${module.repository.category.urlKey}`"
               />
-              </NuxtLink>
+            </NuxtLink>
             <UBadge
               v-if="module.mustHave"
               color="success"
               variant="outline"
               size="sm"
               icon="lucide:check"
-              class="rounded-full ml-2"
+              class="ml-2 rounded-full"
               :label="t('modules.filters.must_have')"
             />
-  
+
             <UContentToc
               class="md:hidden"
               :links="links"
@@ -152,7 +152,6 @@
 
 <script lang="ts" setup>
 import type { ContentTocLink } from '@nuxt/ui'
-import { json } from 'stream/consumers'
 import type { ModuleGroupedHit, Module } from '~~/models'
 
 const { t } = useI18n()
@@ -165,10 +164,10 @@ const { data: moduleGrouped, error } =
     () =>
       moduleService.findByURLKey(
         route.params.handle as string,
-        route?.query?.version as string | undefined
+        route?.query?.serie as string | undefined
       ),
     {
-      watch: [route.path],
+      watch: [() => route.path],
     }
   )
 
@@ -181,14 +180,17 @@ if (moduleGrouped.value == null || error.value) {
 }
 
 let selectedVersion = moduleGrouped.value?.hits?.[0]
-if (route?.query?.version) {
+if (route?.query?.serie) {
   selectedVersion =
-    moduleGrouped.value?.hits.find(
-      (hit) => hit.version === route.query.version
-    ) || selectedVersion
+    moduleGrouped.value?.hits.find((hit) => hit.serie === route.query.serie) ||
+    selectedVersion
+}
+if (route.path !== `/modules/${selectedVersion?.techname}`) {
+  // redirect to the canonical URL if the path doesn't match the selected version's techname
+  navigateTo(`/modules/${selectedVersion?.techname}`, { redirectCode: 301 })
 }
 
-const module = ref<Module | null>(selectedVersion)
+const module = ref<Module | null>(selectedVersion || null)
 const image = computed(() => module.value?.iconUrl || '/oca-logo.png')
 const breadCrumb = computed(() => {
   const items = [
@@ -224,7 +226,7 @@ useSchemaOrg(
     applicationCategory: 'DeveloperApplication',
     softwareHelp: module.value?.website || '',
     url: module.value?.website || '',
-    softwareVersion: module.value?.version || '',
+    softwareVersion: module.value?.serie || '',
     downloadUrl: module.value?.website || '',
     version: module.value?.version || '',
   })
