@@ -147,6 +147,9 @@ export default defineNuxtConfig({
     '/module': {
       redirect: '/modules',
     },
+    'shop': {
+      redirect: '/modules',
+    },
     '/categories': {
       ssr: true,
       swr: 3600,
